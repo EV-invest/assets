@@ -13,7 +13,7 @@
       {
         devShells.default = pkgs.mkShell {
           shellHook = ''
-            cp -f ${(v_flakes.files.gitattributes { inherit pkgs; lfs = true; })} ./.gitattributes
+            cp -f ${(v_flakes.files.gitattributes { inherit pkgs; lfs = false; })} ./.gitattributes
             cp -f ${(v_flakes.files.gitignore { inherit pkgs; langs = []; })} ./.gitignore
           '';
         };
