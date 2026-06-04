@@ -1,0 +1,5 @@
+{
+    accent_color = { L = 0.256; C = 0.100; H = 260; };
+    # TODO main_color = { L = ???; C = ???; H = ???; };
+    # TODO sub_color = { L = ???; C = ???; H = ???; };
+}
