@@ -1,15 +1,15 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/da5ad661ba4e5ef59ba743f0d112cbc30e474f32";
-    flake-utils.url = "github:numtide/flake-utils/11707dc2f618dd54ca8739b309ec4fc024de578b";
-    v_flakes.url = "github:valeratrades/v_flakes/6062f652effc94be053865d58ff03c697c31ecb6";
-    v_flakes.inputs.nixpkgs.follows = "nixpkgs";
+    v_flakes.url = "github:valeratrades/v_flakes?ref=v1.6";
   };
 
-  outputs = { self, nixpkgs, flake-utils, v_flakes }:
+  outputs = { self, v_flakes }:
+    let
+      inherit (v_flakes) flake-utils;
+    in
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import v_flakes.default_nixpkgs { inherit system; };
         accent = (import ./logo/logo_colors.nix).accent_color;
         # dark: accent bg + white logo; light: white bg + accent logo. ($accent is build-time.)
         # 175 matches the old 370/640 proportion, - smallest reasonable fit.
